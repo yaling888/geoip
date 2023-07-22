@@ -2,7 +2,7 @@ name: Build geoip files
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 4"
+    - cron: "0 1 * * 2,5"
   push:
     branches:
       - master
@@ -117,10 +117,10 @@ jobs:
       - name: Remove some files to avoid publishing to GitHub release
         run: rm -rf ./publish/*.{gz,zip} ./publish/text
 
-      - name: Upload files to GitHub release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file_glob: true
-          file: ./publish/*
-          tag: ${{ env.TAG_NAME }}
+      #      - name: Upload files to GitHub release
+      #        uses: svenstaro/upload-release-action@v2
+      #        with:
+      #          repo_token: ${{ secrets.GITHUB_TOKEN }}
+      #          file_glob: true
+      #          file: ./publish/*
+      #          tag: ${{ env.TAG_NAME }}
